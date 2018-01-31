@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="ComplexNumber.cs" />
     <Compile Include="DigitalSignal.cs" />
+    <Compile Include="DigitalSpectrum.cs" />
     <Compile Include="Fourier.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
