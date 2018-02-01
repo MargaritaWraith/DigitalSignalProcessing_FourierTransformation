@@ -81,14 +81,14 @@
             // signalFileToolStripMenuItem
             // 
             this.signalFileToolStripMenuItem.Name = "signalFileToolStripMenuItem";
-            this.signalFileToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.signalFileToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.signalFileToolStripMenuItem.Text = "Signal File";
             this.signalFileToolStripMenuItem.Click += new System.EventHandler(this.signalFileToolStripMenuItem_Click);
             // 
             // spectrumFileToolStripMenuItem
             // 
             this.spectrumFileToolStripMenuItem.Name = "spectrumFileToolStripMenuItem";
-            this.spectrumFileToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.spectrumFileToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.spectrumFileToolStripMenuItem.Text = "Spectrum File";
             this.spectrumFileToolStripMenuItem.Click += new System.EventHandler(this.spectrumFileToolStripMenuItem_Click);
             // 
@@ -97,6 +97,7 @@
             this.MenuSave.Name = "MenuSave";
             this.MenuSave.Size = new System.Drawing.Size(152, 22);
             this.MenuSave.Text = "Save";
+            this.MenuSave.Click += new System.EventHandler(this.MenuSave_Click);
             // 
             // MenuExit
             // 

@@ -24,7 +24,9 @@ namespace DPF
 
         }
 
-        private static double Function(double x) { return Math.Cos(2 * Math.PI * 1 * x); }
+        private static double Function1(double x) { return Math.Cos(2 * Math.PI * 1 * x); }
+
+        private static Func<double, double> retFunc = Function1;
 
         public static ComplexNumber[] Transform(double[] s)
         {

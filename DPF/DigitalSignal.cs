@@ -7,8 +7,18 @@ using System.IO;
 //(?<=\s+)//.*(?=\r\n) - найти все комментарии
 namespace DPF
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class DigitalSignal
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="dt"></param>
+        /// <param name="N"></param>
+        /// <param name="f"></param>
+        /// <returns></returns>
         public static DigitalSignal Discret(double dt, int N, Func<double, double> f)
         {
             double[] s = new double[N];

@@ -25,27 +25,26 @@ namespace GUI
             Close();
         }
 
-        private void MenuOpen_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog dialog = new OpenFileDialog();
-            dialog.Title = "Выберите файл сигнала";
-            dialog.RestoreDirectory = true;
-            dialog.Filter = "Text(*.txt)|*.txt";
-            var result = dialog.ShowDialog();
-            if (result == DialogResult.OK)
-            {
-                var file_name = dialog.FileName;
-                var s = DigitalSignal.LoadFromFile(file_name);
-                f_Signal = s;
-                dtLabel.Text = string.Format("dt={0} seconds", s.dt.ToString());
-                SignalList.Items.Clear();
-                for (int i = 0; i < s.Length; i++)
-                {
-                    SignalList.Items.Add(s[i]);
-                }
-
-            }
-        }
+        //private void MenuOpen_Click(object sender, EventArgs e)
+        //{
+        //    OpenFileDialog dialog = new OpenFileDialog();
+        //    dialog.Title = "Выберите файл сигнала";
+        //    dialog.RestoreDirectory = true;
+        //    dialog.Filter = "Text(*.txt)|*.txt";
+        //    var result = dialog.ShowDialog();
+        //    if (result == DialogResult.OK)
+        //    {
+        //        var file_name = dialog.FileName;
+        //        var s = DigitalSignal.LoadFromFile(file_name);
+        //        f_Signal = s;
+        //        dtLabel.Text = string.Format("dt={0} seconds", s.dt.ToString());
+        //        SignalList.Items.Clear();
+        //        for (int i = 0; i < s.Length; i++)
+        //        {
+        //            SignalList.Items.Add(s[i]);
+        //        }
+        //    }
+        //}
 
         private void ComputeButton_Click(object sender, EventArgs e)
         {
@@ -56,26 +55,24 @@ namespace GUI
             }
             if (f_Signal != null)
             {
-                var Spectrum = f_Signal.GetSpectrum();
-                dfLabel.Text = string.Format("df={0} Hz", Spectrum.df.ToString());
+                f_Spectrum = f_Signal.GetSpectrum();
+                dfLabel.Text = string.Format("df={0} Hz", f_Spectrum.df.ToString());
                 SpectrumList.Items.Clear();
-                for (int i = 0; i < Spectrum.Length; i++)
+                for (int i = 0; i < f_Spectrum.Length; i++)
                 {
-                    SpectrumList.Items.Add(Spectrum[i]);
+                    SpectrumList.Items.Add(f_Spectrum[i]);
                 }
             }
             if (f_Spectrum != null)
             {
-                var Signal = f_Spectrum.GetSignal();
-                dtLabel.Text = string.Format("dt={0} s", Signal.dt.ToString());
+                f_Signal = f_Spectrum.GetSignal();
+                dtLabel.Text = string.Format("dt={0} s", f_Signal.dt.ToString());
                 SignalList.Items.Clear();
-                for (int i = 0; i < Signal.Length; i++)
+                for (int i = 0; i < f_Signal.Length; i++)
                 {
-                    SignalList.Items.Add(Signal[i]);
+                    SignalList.Items.Add(f_Signal[i]);
                 }
             }
-
-
         }
 
         private void signalFileToolStripMenuItem_Click(object sender, EventArgs e)
@@ -96,7 +93,6 @@ namespace GUI
                 {
                     SignalList.Items.Add(s[i]);
                 }
-
             }
         }
 
@@ -120,5 +116,25 @@ namespace GUI
                 }
             }
         }
+
+        private void MenuSave_Click(object sender, EventArgs e)
+        {
+            if (f_Signal == null && f_Spectrum == null)
+            {
+                MessageBox.Show("No signal loaded", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (f_Signal != null)
+            {
+                f_Signal.SaveToFile("Signal.txt");
+            }
+
+            if (f_Spectrum != null)
+            {
+                f_Spectrum.SaveToFile("Spectrum.txt");
+            }
+        }
+
     }
 }
